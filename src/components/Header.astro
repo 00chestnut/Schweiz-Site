@@ -1,0 +1,58 @@
+---
+// src/components/Header.astro
+const { pathname } = Astro.url;
+---
+
+<header class="absolute top-0 left-0 w-full h-12 bg-emerald-600 flex items-center justify-center z-50">
+  <nav class="flex space-x-8">
+    <div class="relative group">
+      <a 
+        href="/blog" 
+        class={`text-white uppercase relative ${pathname === '/blog' ? 'active' : ''}`}
+        aria-label="Odwiedź nasz blog"
+        >
+        Blog
+        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
+      </a>
+    </div>
+    <div class="relative group">
+      <a 
+        href="/" 
+        class={`text-white uppercase relative ${pathname === '/' ? 'active' : ''}`}
+        aria-label="Wróć do strony głównej"
+        >
+        Home
+        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
+      </a>
+    </div>
+    <div class="relative group">
+      <a 
+        href="/shop" 
+        class={`text-white uppercase relative ${pathname === '/shop' ? 'active' : ''}`}
+        aria-label="Odwiedź sklep naszego serwera"
+      >
+        Shop
+        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    font-size: 1.2rem;
+  }
+
+  .active span {
+    width: 155%;
+  }
+
+  nav a {
+    position: relative;
+    padding-bottom: 9px;
+  }
+
+  nav a span {
+    transition: width 0.3s ease;
+  }
+</style>

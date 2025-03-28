@@ -8,9 +8,8 @@ import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import pageInsight from "astro-page-insight";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://onboardf1.netlify.app",
+  // site: "https://onboardf1.netlify.app",
   vite: {
     plugins: [tailwindcss()],
   },
@@ -23,22 +22,22 @@ export default defineConfig({
     },
     searchPagePath: "/search",
   }), partytown(), sitemap(), pageInsight()],
-//   image: {
-//     domains: [
-//       "onboardf1.netlify.app", 
-//       "maks.z0fil5dsgi-xlm41ok1r6dy.p.temp-site.link",
-//     ],
-//     remotePatterns: [
-//       {
-//         protocol: "http",
-//         hostname: "maks.z0fil5dsgi-xlm41ok1r6dy.p.temp-site.link",
-//       },
-//       {
-//         protocol: "https",
-//         hostname: "onboardf1.netlify.app",
-//       },
-//     ],
-//   },
-
+/*  image: {
+    domains: [
+      "onboardf1.netlify.app", 
+      "maks.z0fil5dsgi-xlm41ok1r6dy.p.temp-site.link",
+    ],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "maks.z0fil5dsgi-xlm41ok1r6dy.p.temp-site.link",
+      },
+      {
+        protocol: "https",
+        hostname: "onboardf1.netlify.app",
+      },
+    ],
+  }, 
+*/
   adapter: netlify(),
 });
