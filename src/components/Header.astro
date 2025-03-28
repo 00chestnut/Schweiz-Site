@@ -1,40 +1,47 @@
 ---
-// src/components/Header.astro
+interface NavItem {
+  href: string;
+  label: string;
+  ariaLabel: string;
+}
+
 const { pathname } = Astro.url;
+
+const navItems: NavItem[] = [
+  { href: '/blog', label: 'Blog', ariaLabel: 'Odwiedź nasz blog' },
+  { href: '/', label: 'Home', ariaLabel: 'Wróć do strony głównej' },
+  { href: '/shop', label: 'Shop', ariaLabel: 'Odwiedź sklep naszego serwera' }
+];
 ---
 
 <header class="absolute top-0 left-0 w-full h-12 bg-emerald-600 flex items-center justify-center z-50">
   <nav class="flex space-x-8">
-    <div class="relative group">
-      <a 
-        href="/blog" 
-        class={`text-white uppercase relative ${pathname === '/blog' ? 'active' : ''}`}
-        aria-label="Odwiedź nasz blog"
+    {navItems.map((item) => (
+      <div class={`
+        relative group px-4 py-2  transition-colors duration-300
+        ${pathname === item.href || (item.href === '/' && pathname === '/') 
+          ? 'bg-emerald-800' 
+          : 'hover:bg-emerald-700'}
+      `}>
+        <a 
+          href={item.href} 
+          class={`
+            text-white uppercase relative 
+            ${pathname === item.href || (item.href === '/' && pathname === '/') ? 'active' : ''}
+          `}
+          aria-label={item.ariaLabel}
         >
-        Blog
-        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
-      </a>
-    </div>
-    <div class="relative group">
-      <a 
-        href="/" 
-        class={`text-white uppercase relative ${pathname === '/' ? 'active' : ''}`}
-        aria-label="Wróć do strony głównej"
-        >
-        Home
-        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
-      </a>
-    </div>
-    <div class="relative group">
-      <a 
-        href="/shop" 
-        class={`text-white uppercase relative ${pathname === '/shop' ? 'active' : ''}`}
-        aria-label="Odwiedź sklep naszego serwera"
-      >
-        Shop
-        <span class="absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-[150%]"></span>
-      </a>
-    </div>
+          {item.label}
+          <span class="
+            absolute bottom-[-4px] left-1/2 
+            transform -translate-x-1/2 
+            w-0 h-[3px] bg-yellow-500 
+            transition-all duration-300 
+            group-hover:w-[150%]
+          "></span>
+        </a>
+      </div>
+    ))}
   </nav>
 </header>
 
@@ -43,16 +50,16 @@ const { pathname } = Astro.url;
     font-size: 1.2rem;
   }
 
-  .active span {
-    width: 155%;
-  }
-
   nav a {
     position: relative;
-    padding-bottom: 9px;
+    padding-bottom: 8px;
   }
 
   nav a span {
     transition: width 0.3s ease;
   }
-</style>
+
+  .active span {
+    width: 175%;
+  }
+</style>x``
